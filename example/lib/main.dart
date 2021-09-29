@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Save image to gallery"),
+          title: Text('Save image to gallery'),
         ),
         body: Center(
           child: Column(
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 15),
                 child: RaisedButton(
                   onPressed: _saveScreen,
-                  child: Text("Save Local Image"),
+                  child: Text('Save Local Image'),
                 ),
                 width: 200,
                 height: 44,
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 15),
                 child: RaisedButton(
                   onPressed: _getHttp,
-                  child: Text("Save network image"),
+                  child: Text('Save network image'),
                 ),
                 width: 200,
                 height: 44,
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 15),
                 child: RaisedButton(
                   onPressed: _saveVideo,
-                  child: Text("Save network video"),
+                  child: Text('Save network video'),
                 ),
                 width: 200,
                 height: 44,
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 15),
                 child: RaisedButton(
                   onPressed: _saveGif,
-                  child: Text("Save Gif to gallery"),
+                  child: Text('Save Gif to gallery'),
                 ),
                 width: 200,
                 height: 44,
@@ -124,38 +124,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _getHttp() async {
     var response = await Dio().get(
-        "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg",
+        'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg',
         options: Options(responseType: ResponseType.bytes));
     final result = await ImageGallerySaver.saveImage(
         Uint8List.fromList(response.data),
         quality: 60,
-        name: "hello");
+        name: 'hello');
     print(result);
-    _toastInfo("$result");
+    _toastInfo('$result');
   }
 
   _saveGif() async {
     var appDocDir = await getTemporaryDirectory();
-    String savePath = appDocDir.path + "/temp.gif";
+    String savePath = appDocDir.path + '/temp.gif';
     String fileUrl =
-        "https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-flutter-demo-run.gif";
+        'https://hyjdoc.oss-cn-beijing.aliyuncs.com/hyj-doc-flutter-demo-run.gif';
     await Dio().download(fileUrl, savePath);
     final result = await ImageGallerySaver.saveFile(savePath);
     print(result);
-    _toastInfo("$result");
+    _toastInfo('$result');
   }
 
   _saveVideo() async {
     var appDocDir = await getTemporaryDirectory();
-    String savePath = appDocDir.path + "/temp.mp4";
+    String savePath = appDocDir.path + '/temp.mp4';
     String fileUrl =
-        "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
+        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
     await Dio().download(fileUrl, savePath, onReceiveProgress: (count, total) {
-      print((count / total * 100).toStringAsFixed(0) + "%");
+      print((count / total * 100).toStringAsFixed(0) + '%');
     });
     final result = await ImageGallerySaver.saveFile(savePath);
     print(result);
-    _toastInfo("$result");
+    _toastInfo('$result');
   }
 
   _toastInfo(String info) {

@@ -32,7 +32,7 @@ void main() {
           'imageBytes': imageBytes,
           'quality': 80,
           'name': null,
-          "isReturnImagePathOfIOS": false
+          'isReturnImagePathOfIOS': false
         })
       ],
     );

@@ -10,7 +10,7 @@ class ImageGallerySaver {
   /// save image to Gallery
   /// imageBytes can't null
   /// return Map type
-  /// for example:{"isSuccess":true, "filePath":String?}
+  /// for example:{'isSuccess':true, 'filePath':String?}
   static FutureOr<dynamic> saveImage(Uint8List imageBytes,
       {int quality = 80,
       String? name,
